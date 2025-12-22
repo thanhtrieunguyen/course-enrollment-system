@@ -1,167 +1,139 @@
 @extends('layouts.main-admin')
 
-@section('title', 'Trang chủ')
+@section('title', 'Dashboard Admin')
 
 @section('content')
+    <div class="container mx-auto px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-3xl font-bold text-gray-800 uppercase tracking-wider">Dashboard</h3>
+            <span class="text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                <i class="far fa-calendar-alt mr-2 text-blue-500"></i> {{ now()->format('d/m/Y') }}
+            </span>
+        </div>
 
-    <div class="container min-w-full px-5 mx-auto bg-gray-50">
-        @if (Session::has('message'))
-            <script>
-                toastr.success("{{ Session::get('message') }}");
-            </script>
-        @endif
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div class="rounded-full bg-blue-50 p-4 mr-4 text-blue-600">
+                    <i class="fas fa-user-graduate text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase">Sinh viên</p>
+                    <h4 class="text-2xl font-bold text-gray-800">{{ $stats['total_students'] }}</h4>
+                </div>
+            </div>
 
-        <div class="py-8">
-            <h2 class="text-center text-3xl font-bold mb-8 text-gray-800 relative">
-                TIN TỨC SỰ KIỆN
-                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-500 mt-2"></div>
-            </h2>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div class="rounded-full bg-purple-50 p-4 mr-4 text-purple-600">
+                    <i class="fas fa-book text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase">Môn học</p>
+                    <h4 class="text-2xl font-bold text-gray-800">{{ $stats['total_courses'] }}</h4>
+                </div>
+            </div>
 
-            @php
-                $news = [
-                    [
-                        'title' => 'Hội thảo khoa học phiên dịch giả định của sinh viên ngôn ngữ anh',
-                        'date' => '28 May, 2024',
-                        'excerpt' => 'Dựa trên mô hình Hội thảo Giả định của UNESCO...',
-                        'image' => 'uploads/h1.jpg',
-                        'link' =>
-                            'https://vaa.edu.vn/hoi-thao-khoa-hoc-phien-dich-gia-dinh-cua-sinh-vien-ngon-ngu-anh/',
-                    ],
-                    [
-                        'title' => 'Bộ phẩm chất và năng lực sinh viên tốt nghiệp Học viện Hàng không Việt Nam',
-                        'date' => '1 October, 2024',
-                        'excerpt' =>
-                            'Nhằm cụ thể hóa tầm nhìn, sứ mạng và giá trị cốt lõi của Học viện Hàng không Việt Nam...',
-                        'image' => 'uploads/h2.png',
-                        'link' =>
-                            'https://vaa.edu.vn/bo-pham-chat-va-nang-luc-sinh-vien-tot-nghiep-hoc-vien-hang-khong-viet-nam/',
-                    ],
-                    [
-                        'title' => 'Khai giảng ấm áp tình người của Học viện Hàng không Việt Nam',
-                        'date' => '30 September, 2024',
-                        'excerpt' =>
-                            'Sáng ngày 29/9/2024, Học viện Hàng không Việt Nam tổ chức Lễ Khai giảng năm học 2024-2025...',
-                        'image' => 'uploads/h3.png',
-                        'link' => 'https://vaa.edu.vn/khai-giang-am-ap-tinh-nguoi-cua-hoc-vien-hang-khong-viet-nam/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                    [
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],[
-                        'title' => 'Sinh viên Học viện Hàng không hỗ trợ hành khách tại Tân Sơn Nhất dịp lễ 02/09/2024',
-                        'date' => '6 September, 2024',
-                        'excerpt' =>
-                            'Chiến dịch Thanh niên tình nguyện dịp cao điểm Lễ Quốc Khánh được phát động bởi Đoàn Cảng hàng không Quốc tế Tân Sơn Nhất...',
-                        'image' => 'uploads/h4.png',
-                        'link' =>
-                            'https://vaa.edu.vn/net-dep-sinh-vien-hoc-vien-hang-khong-viet-nam-khi-ho-tro-hanh-khach-tai-cang-hang-khong-quoc-te-tan-son-nhat-dip-le-quoc-khanh-02-09-2024/',
-                    ],
-                ];
-                $perPage = 8; // Số lượng bài viết hiển thị trên mỗi trang
-                $page = request('page', 1); // Trang hiện tại
-                $total = count($news); // Tổng số bài viết
-                $newsOnPage = array_slice($news, ($page - 1) * $perPage, $perPage); // Chia nhỏ dữ liệu theo trang
-            @endphp
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div class="rounded-full bg-green-50 p-4 mr-4 text-green-600">
+                    <i class="fas fa-university text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase">Khoa</p>
+                    <h4 class="text-2xl font-bold text-gray-800">{{ $stats['total_khoas'] }}</h4>
+                </div>
+            </div>
 
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div class="rounded-full bg-yellow-50 p-4 mr-4 text-yellow-600">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase">Lớp học</p>
+                    <h4 class="text-2xl font-bold text-gray-800">{{ $stats['total_classes'] }}</h4>
+                </div>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                @foreach ($newsOnPage as $item)
-                    <div
-                        class="bg-white shadow-lg rounded-xl overflow-hidden h-[380px] flex flex-col transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="relative flex-shrink-0 h-48">
-                            <img src="{{ asset($item['image']) }}"
-                                class="w-full h-full object-cover transition duration-300 hover:scale-110" alt="News Image">
-                            <div
-                                class="absolute bottom-0 left-0 bg-gradient-to-t from-black/60 to-transparent w-full h-1/2">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex items-center transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                <div class="rounded-full bg-red-50 p-4 mr-4 text-red-600">
+                    <i class="fas fa-edit text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-gray-400 uppercase">Đăng ký</p>
+                    <h4 class="text-2xl font-bold text-gray-800">{{ $stats['total_registrations'] }}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Hot Courses List -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h5 class="text-lg font-bold text-gray-800 capitalize">Môn học đăng ký nhiều nhất</h5>
+                    <a href="{{ route('monhoc.index') }}" class="text-blue-500 text-sm font-semibold hover:underline">Tất cả</a>
+                </div>
+                <div class="space-y-4">
+                    @foreach($hot_courses as $monhoc)
+                        <div class="flex items-center p-3 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold mr-4">
+                                {{ substr($monhoc->tenmonhoc, 0, 1) }}
                             </div>
-                            <p
-                                class="absolute bottom-3 left-3 text-white text-sm font-medium bg-blue-600 px-3 py-1 rounded-full">
-                                {{ $item['date'] }}</p>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h5 class="text-lg font-bold mb-3 line-clamp-2 group">
-                                <a href="{{ $item['link'] }}"
-                                    class="text-gray-800 hover:text-blue-600 transition duration-300">{{ $item['title'] }}</a>
-                            </h5>
-                            <p class="text-gray-600 line-clamp-3 text-sm">{{ $item['excerpt'] }}</p>
-                            <div class="mt-auto pt-4">
-                                <a href="{{ $item['link'] }}"
-                                    class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition duration-300">
-                                    Xem thêm
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
+                            <div class="flex-grow">
+                                <h6 class="text-sm font-bold text-gray-800">{{ $monhoc->tenmonhoc }}</h6>
+                                <p class="text-xs text-gray-500">{{ $monhoc->giangvien }}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block px-2 py-1 rounded-full bg-blue-100 text-blue-600 text-[10px] font-bold">
+                                    {{ $monhoc->dadangky }} / {{ $monhoc->soluongsinhvien }} SV
+                                </span>
+                                <div class="w-24 bg-gray-100 rounded-full h-1.5 mt-2">
+                                    @if($monhoc->soluongsinhvien > 0)
+                                        <div class="bg-blue-500 h-1.5 rounded-full" style="width: {{ ($monhoc->dadangky / $monhoc->soluongsinhvien) * 100 }}%"></div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Quick Actions & Khoa Stats -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <h5 class="text-lg font-bold text-gray-800 mb-6 capitalize">Thao tác nhanh</h5>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="{{ route('sinhvien.create') }}" class="flex flex-col items-center justify-center p-4 rounded-xl border border-dashed border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all group">
+                            <i class="fas fa-user-plus text-2xl mb-2 text-gray-400 group-hover:text-blue-600"></i>
+                            <span class="text-sm font-bold text-gray-600 group-hover:text-blue-700">Thêm sinh viên</span>
+                        </a>
+                        <a href="{{ route('monhoc.create') }}" class="flex flex-col items-center justify-center p-4 rounded-xl border border-dashed border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all group">
+                            <i class="fas fa-folder-plus text-2xl mb-2 text-gray-400 group-hover:text-green-600"></i>
+                            <span class="text-sm font-bold text-gray-600 group-hover:text-green-700">Thêm môn học</span>
+                        </a>
                     </div>
-                @endforeach
-            </div>
+                </div>
 
-            <div class="mt-8 flex justify-center">
-                @if ($page > 1)
-                    <a href="?page={{ $page - 1 }}" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800">Trang trước</a>
-                @endif
-                @if ($page * $perPage < $total)
-                    <a href="?page={{ $page + 1 }}" class="px-4 py-2 ml-2 bg-blue-600 text-white rounded-md hover:bg-blue-800">Trang sau</a>
-                @endif
-            </div>
-
-         
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                    <h5 class="text-lg font-bold text-gray-800 mb-6 capitalize">Phân bổ sinh viên theo khoa</h5>
+                    <div class="space-y-4">
+                        @foreach($registrations_by_khoa as $khoa)
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-gray-600">{{ $khoa->tenkhoa }}</span>
+                                <div class="flex items-center flex-grow mx-4">
+                                    <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                        @php
+                                            $percentage = $stats['total_students'] > 0 ? ($khoa->sinhviens_count / $stats['total_students']) * 100 : 0;
+                                        @endphp
+                                        <div class="bg-gradient-to-r from-blue-400 to-indigo-500 h-1.5 rounded-full" style="width: {{ $percentage }}%"></div>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-bold text-gray-800">{{ $khoa->sinhviens_count }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @endsection
-

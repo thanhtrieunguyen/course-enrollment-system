@@ -14,7 +14,7 @@ class CreateSinhvienTable extends Migration
             $table->string('hoten');
             $table->date('ngaysinh');
             $table->string('gioitinh');
-            $table->string('malop');
+            $table->unsignedInteger('malop');
             $table->foreign('malop')->references('malop')->on('lophoc');
             $table->string('makhoa');
             $table->foreign('makhoa')->references('makhoa')->on('khoa');

@@ -134,33 +134,25 @@
 </style>
 <footer class="footer">
     <div class="footer__addr">
-        <div class="hd-logo"
-            style="
+        <div class="hd-logo" style="
                         display: flex;
                         flex-direction: row;
                         align-items: center;
                     ">
-            <a href="#" class="custom-logo-link" rel="home" itemprop="url" style="margin-right: 10px">
-                <div class="icon" style="
-                            width: fit-content;
-                        ">
-                    <img width="60" height="86" src="https://vaa.edu.vn/wp-content/uploads/2024/05/vaa.svg"
-                        class="header-logo-image" alt="" decoding="async">
-                </div>
+            <a class="logo-txt font-second" href="/trangchu"
+                style="font-size: 1.2rem; font-weight: bold; color: white; text-transform: uppercase;">
+                {{ config('app.name') }}
             </a>
-            <a class="logo-txt font-second" href="/trangchu" style="font-size: 1rem">HỌC VIỆN HÀNG KHÔNG
-                VIỆT NAM<br>VIETNAM AVIATION ACADEMY </a>
         </div>
         <address>
-            <br>Cơ sở chính: 104 Nguyễn Văn Trỗi, P.8, Q. Phú Nhuận, TP.HCM, VN.<br><br>
-            Cơ sở 2: 18A/1 Cộng Hòa, P.4, Q. Tân Bình, TP.HCM, VN.<br>
-
-            <a class="footer__btn" href="mailto:example@gmail.com">Email Us</a>
+            <br>Trụ sở chính: Khu công nghệ cao, Quận 9, TP.HCM, Việt Nam.<br><br>
+            Email liên hệ: support@example.com<br>
+            <a class="footer__btn" href="mailto:support@example.com">Email Us</a>
         </address>
     </div>
 
     <ul class="footer__nav">
-        
+
 
         <li class="nav__item nav__item--extra">
             <h2 class="nav__title">Dịch vụ</h2>
@@ -210,17 +202,17 @@
                     const form = document.createElement('form');
                     form.method = 'POST';
                     form.action = url;
-    
+
                     const csrfToken = document.createElement('input');
                     csrfToken.type = 'hidden';
                     csrfToken.name = '_token';
                     csrfToken.value = '{{ csrf_token() }}'; // Thay thế với token của bạn
-    
+
                     const methodField = document.createElement('input');
                     methodField.type = 'hidden';
                     methodField.name = '_method';
                     methodField.value = 'DELETE';
-    
+
                     form.appendChild(csrfToken);
                     form.appendChild(methodField);
                     document.body.appendChild(form);

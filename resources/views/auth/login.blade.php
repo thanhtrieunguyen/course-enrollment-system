@@ -25,8 +25,6 @@
             text-transform: uppercase;
             transition: all .4s;
         }
-
-        
     </style>
     <title>Trang đăng nhập</title>
 </head>
@@ -45,27 +43,16 @@
     @endif
 
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="rounded-lg shadow-lg p-8 w-full max-w-screen-sm bg-white"
-            style="
+        <div class="rounded-lg shadow-lg p-8 w-full max-w-screen-sm bg-white" style="
                        ">
-            <div class="hd-logo"
-                style="
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        padding: 10px
-                    ">
-                <a href="#" class="custom-logo-link" rel="home" itemprop="url" style="margin-right: 10px">
-                    <div class="icon"
-                        style="
-                            width: fit-content;
-                        ">
-                        <img width="90" height="86" src="https://vaa.edu.vn/wp-content/uploads/2024/05/vaa.svg"
-                            class="header-logo-image" alt="" decoding="async">
-                    </div>
+            <div class="hd-logo flex items-center mb-6 p-2">
+                <div
+                    class="bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-3">
+                    {{ substr(config('app.name'), 0, 1) }}
+                </div>
+                <a class="logo-txt font-second text-blue-900 font-bold text-xl uppercase" href="#">
+                    {{ config('app.name') }}
                 </a>
-                <a class="logo-txt font-second" href="#" style="font-size: 1.5rem">HỌC VIỆN HÀNG KHÔNG
-                    VIỆT NAM<br>VIETNAM AVIATION ACADEMY </a>
             </div>
 
             <h2 class="mt-4 text-2xl font-semibold text-center text-gray-800">Đăng nhập</h2>
@@ -82,7 +69,8 @@
                     <label class="block text-gray-700 mb-2">Mã số sinh viên:</label>
                     <input
                         class="input99 border border-gray-300 rounded w-full p-2 focus:outline-none focus:ring focus:ring-blue-300"
-                        type="text" name="mssv" id="mssv" placeholder="Nhập Mã số sinh viên" value="{{ old('mssv')}}" required>
+                        type="text" name="mssv" id="mssv" placeholder="Nhập Mã số sinh viên" value="{{ old('mssv')}}"
+                        required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 mb-2">Mật khẩu:</label>
@@ -97,10 +85,7 @@
                         name="dangnhap" value="Đăng nhập">
                 </div>
 
-                <div class="text-center">
-                    <span>Bạn chưa có tài khoản? </span>
-                    <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Đăng ký ngay!</a>
-                </div>
+
             </form>
         </div>
     </div>

@@ -9,20 +9,43 @@ class MonhocSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('monhoc')->insert([
-            ['mamonhoc' => 'CNTT01', 'tenmonhoc' => 'Lập trình C++', 'giangvien' => 'ThS. Thái Duy Quý', 'lichhoc' => 'Thứ 2, 14h00-16h00', 'sotinchi' => 3, 'soluongsinhvien' => 50, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT02', 'tenmonhoc' => 'Lập trình Java', 'giangvien' => 'ThS. Lê Gia Công', 'lichhoc' => 'Thứ 3, 09h00-11h00', 'sotinchi' => 4, 'soluongsinhvien' => 45, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT03', 'tenmonhoc' => 'Phát triển ứng dụng di động', 'giangvien' => 'ThS. Lê Văn Tài', 'lichhoc' => 'Thứ 4, 12h00-15h00', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT04', 'tenmonhoc' => 'Mạng máy tính', 'giangvien' => 'ThS. Huỳnh Thanh Sơn', 'lichhoc' => 'Thứ 7, 07h00-12h00', 'sotinchi' => 4, 'soluongsinhvien' => 45, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT05', 'tenmonhoc' => 'Hệ quản trị cơ sở dữ liệu', 'giangvien' => 'TS. Nguyễn Lương Anh Tuấn', 'lichhoc' => 'Thứ 5, 12h00-15h00', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT06', 'tenmonhoc' => 'Lập trình mạng', 'giangvien' => 'ThS. Ngô Minh Nhựt', 'lichhoc' => 'Thứ 3, 16h00-20h00', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT07', 'tenmonhoc' => 'Hệ điều hành', 'giangvien' => 'ThS. Nguyễn Hữu Hiệp', 'lichhoc' => 'Thứ 4, 07h00-10h30', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'CNTT08', 'tenmonhoc' => 'Lập trình Python', 'giangvien' => 'ThS. Hồ Văn Quí', 'lichhoc' => 'Thứ 5, 07h00-10h30', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT'],
-            ['mamonhoc' => 'MKT01', 'tenmonhoc' => 'Xác xuất thống kê', 'giangvien' => 'TS. Trịnh Xuân Quyết', 'lichhoc' => 'Thứ 2, 07h00-10h30', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'KT'],
-            ['mamonhoc' => 'MKT02', 'tenmonhoc' => 'Marketing cơ bản', 'giangvien' => 'ThS. Lê Thị Tươi', 'lichhoc' => 'Thứ 3, 07h00-10h30', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'KT'],
-            ['mamonhoc' => 'MCB01', 'tenmonhoc' => 'Pháp luật đại cương', 'giangvien' => 'ThS. Nguyễn Tuấn Anh', 'lichhoc' => 'Thứ 6, 12h00-16h30', 'sotinchi' => 3, 'soluongsinhvien' => 60, 'makhoa' => 'CB'],
-            ['mamonhoc' => 'MCB02', 'tenmonhoc' => 'Triết học', 'giangvien' => 'ThS. Lê Thị Hoa', 'lichhoc' => 'Thứ 3, 16h00-20h00', 'sotinchi' => 3, 'soluongsinhvien' => 60, 'makhoa' => 'CB'],
-        
-        ]);
+        $courses = [
+            // CNTT
+            ['mamonhoc' => 'COMP101', 'tenmonhoc' => 'Cơ sở lập trình', 'giangvien' => 'ThS. Nguyễn Văn A', 'sotinchi' => 3, 'soluongsinhvien' => 60, 'makhoa' => 'CNTT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'COMP102', 'tenmonhoc' => 'Cấu trúc dữ liệu', 'giangvien' => 'TS. Trần Thị B', 'sotinchi' => 4, 'soluongsinhvien' => 50, 'makhoa' => 'CNTT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'COMP201', 'tenmonhoc' => 'Lập trình Web', 'giangvien' => 'ThS. Lê Văn C', 'sotinchi' => 3, 'soluongsinhvien' => 40, 'makhoa' => 'CNTT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'COMP301', 'tenmonhoc' => 'Trí tuệ nhân tạo', 'giangvien' => 'PGS.TS Phạm Văn D', 'sotinchi' => 3, 'soluongsinhvien' => 30, 'makhoa' => 'CNTT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'COMP302', 'tenmonhoc' => 'An toàn thông tin', 'giangvien' => 'ThS. Hoàng Văn E', 'sotinchi' => 3, 'soluongsinhvien' => 35, 'makhoa' => 'CNTT', 'mahocky' => 'HK1'],
+
+            // Kinh tế
+            ['mamonhoc' => 'ECON101', 'tenmonhoc' => 'Kinh tế vi mô', 'giangvien' => 'ThS. Phan Văn F', 'sotinchi' => 3, 'soluongsinhvien' => 70, 'makhoa' => 'KT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'ECON102', 'tenmonhoc' => 'Kinh tế vĩ mô', 'giangvien' => 'TS. Huỳnh Thị G', 'sotinchi' => 3, 'soluongsinhvien' => 70, 'makhoa' => 'KT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'ECON201', 'tenmonhoc' => 'Kế toán tài chính', 'giangvien' => 'ThS. Đặng Văn H', 'sotinchi' => 4, 'soluongsinhvien' => 50, 'makhoa' => 'KT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'ECON301', 'tenmonhoc' => 'Quản trị nhân sự', 'giangvien' => 'ThS. Bùi Thị I', 'sotinchi' => 3, 'soluongsinhvien' => 45, 'makhoa' => 'KT', 'mahocky' => 'HK1'],
+
+            // Ngoại ngữ
+            ['mamonhoc' => 'LANG101', 'tenmonhoc' => 'Tiếng Anh cơ bản 1', 'giangvien' => 'Ms. Jane Doe', 'sotinchi' => 3, 'soluongsinhvien' => 40, 'makhoa' => 'NN', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'LANG102', 'tenmonhoc' => 'Tiếng Anh cơ bản 2', 'giangvien' => 'Mr. John Smith', 'sotinchi' => 3, 'soluongsinhvien' => 40, 'makhoa' => 'NN', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'LANG201', 'tenmonhoc' => 'Tiếng Anh chuyên ngành', 'giangvien' => 'ThS. Vũ Văn J', 'sotinchi' => 2, 'soluongsinhvien' => 35, 'makhoa' => 'NN', 'mahocky' => 'HK1'],
+
+            // Điện tử
+            ['mamonhoc' => 'ELEC101', 'tenmonhoc' => 'Mạch điện tử 1', 'giangvien' => 'ThS. Ngô Văn K', 'sotinchi' => 3, 'soluongsinhvien' => 50, 'makhoa' => 'DTVT', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'ELEC201', 'tenmonhoc' => 'Vi xử lý', 'giangvien' => 'TS. Đỗ Văn L', 'sotinchi' => 4, 'soluongsinhvien' => 40, 'makhoa' => 'DTVT', 'mahocky' => 'HK1'],
+
+            // Cơ bản
+            ['mamonhoc' => 'MATH101', 'tenmonhoc' => 'Giải tích 1', 'giangvien' => 'TS. Lý Văn M', 'sotinchi' => 3, 'soluongsinhvien' => 100, 'makhoa' => 'CB', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'MATH102', 'tenmonhoc' => 'Đại số tuyến tính', 'giangvien' => 'ThS. Thái Văn N', 'sotinchi' => 3, 'soluongsinhvien' => 80, 'makhoa' => 'CB', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'PHYS101', 'tenmonhoc' => 'Vật lý đại cương', 'giangvien' => 'ThS. Nguyễn Văn O', 'sotinchi' => 3, 'soluongsinhvien' => 80, 'makhoa' => 'CB', 'mahocky' => 'HK1'],
+            ['mamonhoc' => 'POLI101', 'tenmonhoc' => 'Triết học Mác-Lênin', 'giangvien' => 'ThS. Lê Thị P', 'sotinchi' => 3, 'soluongsinhvien' => 120, 'makhoa' => 'CB', 'mahocky' => 'HK1'],
+        ];
+
+        foreach ($courses as $key => $course) {
+            $courses[$key]['lichhoc'] = 'Thứ ' . rand(2, 7) . ', ' . rand(7, 15) . 'h00-' . rand(16, 20) . 'h00';
+            $courses[$key]['dadangky'] = 0;
+            $courses[$key]['created_at'] = now();
+            $courses[$key]['updated_at'] = now();
+        }
+
+        DB::table('monhoc')->insert($courses);
     }
 }

@@ -18,7 +18,8 @@ class SinhVien extends Authenticatable
     protected $fillable = [
         'mssv',
         'password',
-        'mssv',
+        'role',
+        'hoten',
         'ngaysinh',
         'gioitinh',
         'malop',
