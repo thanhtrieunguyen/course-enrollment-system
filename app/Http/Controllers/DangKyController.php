@@ -166,39 +166,34 @@ class DangKyController extends Controller
         });
     }
 
+    public function addMonHocWithoutTransaction(Request $request)
+    {
+        $sinhvien = Auth::user();
+        $mamonhoc = $request->input('mamonhoc');
 
+        $monhoc = MonHoc::where('mamonhoc', $mamonhoc)->first();
 
+        if ($monhoc && $monhoc->dadangky < $monhoc->soluongsinhvien) {
+            usleep(2000000);
+            DB::table('dsdangky')->insert([
+                'mamonhoc' => $mamonhoc,
+                'mssv' => $sinhvien->mssv,
+                'dstenmonhoc' => $monhoc->tenmonhoc,
+                'dsgiangvien' => $monhoc->giangvien,
+                'dssotinchi' => $monhoc->sotinchi,
+            ]);
 
-    // // // ============== // //
-    // public function addMonHocWithoutTransaction(Request $request)
-    // {
-    //     $sinhvien = Auth::user();
-    //     $mamonhoc = $request->input('mamonhoc');
+            // Cập nhật số lượng đã đăng ký
+            $monhoc->dadangky += 1;
+            $monhoc->save();
 
-    //     // Lấy thông tin môn học
-    //     $monhoc = MonHoc::where('mamonhoc', $mamonhoc)->first();
-
-    //     // Kiểm tra nếu số lượng đã đăng ký nhỏ hơn số lượng sinh viên tối đa
-    //     if ($monhoc && $monhoc->dadangky < $monhoc->soluongsinhvien) {
-    //         DB::table('dsdangky')->insert([
-    //             'mamonhoc' => $mamonhoc,
-    //             'mssv' => $sinhvien->mssv,
-    //             'dstenmonhoc' => $monhoc->tenmonhoc,
-    //             'dsgiangvien' => $monhoc->giangvien,
-    //             'dssotinchi' => $monhoc->sotinchi,
-    //         ]);
-
-    //         // Cập nhật số lượng đã đăng ký
-    //         $monhoc->dadangky += 1;
-    //         $monhoc->save();
-
-    //         // Trả về thông báo thành công
-    //         return response()->json(['message' => 'Đăng ký học phần thành công!', 'redirect' => route('dangky')], 200);
-    //     } else {
-    //         // Thông báo lỗi nếu đã hết chỗ
-    //         return response()->json(['message' => 'Môn học đã hết chỗ!'], 400);
-    //     }
-    // }
+            // Trả về thông báo thành công
+            return response()->json(['message' => 'Đăng ký học phần thành công!', 'redirect' => route('dangky')], 200);
+        } else {
+            // Thông báo lỗi nếu đã hết chỗ
+            return response()->json(['message' => 'Môn học đã hết chỗ!'], 400);
+        }
+    }
 
 
     public function ketQuaDangKy()

@@ -3,55 +3,71 @@
 @section('title', 'Chỉnh Sửa Lớp học')
 
 @section('content')
-<div class="container mx-auto mt-10 mb-14">
-    @if (session('error'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Có lỗi xảy ra!',
-                text: '{{ session('error') }}',
-                showConfirmButton: true,
-            });
-        </script>
-    @endif
-    <div class="flex justify-center">
-        <div class="w-full max-w-lg">
-            <div class="bg-white shadow-lg rounded-lg">
-                <div class="bg-blue-900 text-white text-center py-3 rounded-t-lg">
-                    <h4 class="font-bold">Chỉnh sửa thông tin Lớp học</h4>
-                </div>
-                <div class="px-8 py-6">
-                    <form action="{{ route('lophoc.update', $lop->malop) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+    <div class="container mx-auto p-4">
+        <!-- Header section with title and button -->
+        <div class="flex justify-between items-center text-white p-4 rounded-md shadow-md mb-8"
+            style="background-color: #002244">
+            <h2 class="text-2xl font-semibold uppercase tracking-wider">Chỉnh Sửa Lớp học</h2>
+            <a href="{{ route('lophoc.index') }}"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md">
+                <i class="fas fa-arrow-left mr-2"></i> Trở về danh sách
+            </a>
+        </div>
 
-                        <div class="mb-4">
-                            <label for="tenlop" class="block text-gray-700">Tên Lớp học</label>
-                            <input type="text" name="tenlop"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value="{{ $lop->tenlop }}" placeholder="Nhập tên Lớp học" required>
-                        </div>
+        @if (session('error'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Có lỗi xảy ra!',
+                    text: '{{ session('error') }}',
+                    showConfirmButton: true,
+                });
+            </script>
+        @endif
+
+        <div class="flex justify-center">
+            <div class="w-full max-w-4xl">
+                <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-gray-100">
+                    <div class="p-8">
+                        <form action="{{ route('lophoc.update', $lop->malop) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <div class="grid grid-cols-1 gap-6">
+                                <!-- Tên Lớp Học -->
+                                <div class="mb-4">
+                                    <label for="tenlop" class="block text-gray-700 font-bold mb-2">Tên Lớp học</label>
+                                    <input type="text" name="tenlop" id="tenlop" placeholder="Nhập tên lớp học"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        value="{{ $lop->tenlop }}" required>
+                                </div>
 
 
-                        <div class="mb-4">
-                            <label for="makhoa" class="block text-gray-700">Khoa:</label>
-                            <select name="makhoa" id="makhoa"
-                                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Chọn khoa</option>
-                                @foreach ($khoas as $khoa)
-                                    <option value="{{ $khoa->makhoa }}"
-                                        {{ $lop->makhoa == $khoa->makhoa ? 'selected' : '' }}>
-                                        {{ $khoa->tenkhoa }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                                <!-- Khoa -->
+                                <div class="mb-4">
+                                    <label for="makhoa" class="block text-gray-700 font-bold mb-2">Khoa:</label>
+                                    <select name="makhoa" id="makhoa"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
+                                        <option value="">Chọn khoa</option>
+                                        @foreach ($khoas as $khoa)
+                                            <option value="{{ $khoa->makhoa }}" {{ $lop->makhoa == $khoa->makhoa ? 'selected' : '' }}>
+                                                {{ $khoa->tenkhoa }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
-                        <button type="submit"
-                            class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded">Cập Nhật</button>
-                    </form>
+                            <div class="mt-8 flex justify-center">
+                                <button type="submit"
+                                    class="w-full md:w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg uppercase tracking-wide">
+                                    <i class="fas fa-save mr-2"></i> Cập Nhật
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -11,7 +11,7 @@
                 text: '{{ session('error') }}',
                 showConfirmButton: true,
             });
-            <?php session()->forget('error'); ?>
+            <?php    session()->forget('error'); ?>
         </script>
     @endif
 
@@ -25,9 +25,47 @@
                 showConfirmButton: false,
                 timer: 2000
             });
-            <?php session()->forget('success'); ?>
+            <?php    session()->forget('success'); ?>
         </script>
     @endif
+
+    <style>
+        /* Custom Pagination Styling */
+        .pagination-container nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-container .relative.inline-flex.items-center {
+            padding: 8px 16px;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            color: #374151 !important;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .pagination-container .relative.inline-flex.items-center:hover {
+            background-color: #f3f4f6;
+            color: #002244 !important;
+        }
+
+        /* Active page */
+        .pagination-container .z-10.bg-indigo-50,
+        .pagination-container [aria-current="page"] span,
+        .pagination-container [aria-current="page"] .relative {
+            background-color: #002244 !important;
+            border-color: #002244 !important;
+            color: white !important;
+        }
+
+        .pagination-container svg {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+    </style>
 
     <div class="container min-w-full px-5 mx-auto bg-gray-50">
         @if (Session::has('message'))
@@ -37,9 +75,8 @@
         @endif
 
         <div class="py-8">
-            <h2 class="text-center text-3xl font-bold mb-8 text-gray-800 relative">
-                TIN TỨC SỰ KIỆN
-                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-500 mt-2"></div>
+            <h2 class="text-center text-2xl font-bold mb-8 text-blue-900 border-b-2 pb-2 inline-block mx-auto w-full">
+                TIN TỨC - SỰ KIỆN
             </h2>
 
             @php
@@ -140,50 +177,39 @@
             @endphp
 
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 @foreach ($newsOnPage as $item)
-                    <div
-                        class="bg-white shadow-lg rounded-xl overflow-hidden h-[380px] flex flex-col transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="relative flex-shrink-0 h-48">
-                            <img src="{{ asset($item['image']) }}"
-                                class="w-full h-full object-cover transition duration-300 hover:scale-110" alt="News Image">
-                            <div
-                                class="absolute bottom-0 left-0 bg-gradient-to-t from-black/60 to-transparent w-full h-1/2">
-                            </div>
+                    <div class="bg-white border-2 border-gray-100 flex flex-col h-[350px] rounded">
+                        <div class="relative flex-shrink-0 h-40">
+                            <img src="{{ asset($item['image']) }}" class="w-full h-full object-cover" alt="News Image">
                             <p
-                                class="absolute bottom-3 left-3 text-white text-sm font-medium bg-blue-600 px-3 py-1 rounded-full">
-                                {{ $item['date'] }}</p>
+                                class="absolute bottom-2 left-2 text-white text-[10px] uppercase font-bold bg-gray-800 px-2 py-1">
+                                {{ $item['date'] }}
+                            </p>
                         </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h5 class="text-lg font-bold mb-3 line-clamp-2 group">
-                                <a href="{{ $item['link'] }}"
-                                    class="text-gray-800 hover:text-blue-600 transition duration-300">{{ $item['title'] }}</a>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h5 class="text-md font-bold mb-2 line-clamp-2">
+                                <a href="{{ $item['link'] }}" class="text-blue-800 hover:text-blue-600">{{ $item['title'] }}</a>
                             </h5>
-                            <p class="text-gray-600 line-clamp-3 text-sm">{{ $item['excerpt'] }}</p>
-                            <div class="mt-auto pt-4">
+                            <p class="text-gray-600 line-clamp-3 text-xs">{{ $item['excerpt'] }}</p>
+                            <div class="mt-auto pt-3 border-t border-gray-100">
                                 <a href="{{ $item['link'] }}"
-                                    class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition duration-300">
-                                    Xem thêm
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7"></path>
-                                    </svg>
+                                    class="text-xs font-bold text-blue-600 hover:text-blue-800 uppercase text-decoration-none">
+                                    Chi tiết &raquo;
                                 </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-
-            <div class="mt-8 flex justify-center">
-                @if ($page > 1)
-                    <a href="?page={{ $page - 1 }}"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800">Trang trước</a>
-                @endif
-                @if ($page * $perPage < $total)
-                    <a href="?page={{ $page + 1 }}"
-                        class="px-4 py-2 ml-2 bg-blue-600 text-white rounded-md hover:bg-blue-800">Trang sau</a>
-                @endif
+            @php
+                $news = new \Illuminate\Pagination\LengthAwarePaginator($newsOnPage, $total, $perPage, $page, [
+                    'path' => request()->url(),
+                    'pageName' => 'page',
+                ]);
+            @endphp
+            <div class="mt-8 pagination-container">
+                {{ $news->links() }}
             </div>
 
 

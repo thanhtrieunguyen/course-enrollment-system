@@ -52,9 +52,9 @@
         justify-content: center;
         height: 36px;
         max-width: max-content;
-        background-color: rgb(33, 33, 33, 0.07);
-        border-radius: 100px;
-        color: #2f2f2f;
+        background-color: #666;
+        color: #fff;
+        font-weight: bold;
         line-height: 0;
         margin: 0.6em 0;
         font-size: 1rem;

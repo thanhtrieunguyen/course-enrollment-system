@@ -193,7 +193,8 @@
                     $('#loading').show();
 
                     $.ajax({
-                        url: '{{ route('dangkyhocphan.add') }}',
+                        url: '{{ route('dangkyhocphan.add') }}', // đã có transaction
+                        // url: '{{ route('dangkyhocphan.no_transaction') }}', // không có transaction
                         type: 'POST',
                         data: {
                             _token: '{{ csrf_token() }}',

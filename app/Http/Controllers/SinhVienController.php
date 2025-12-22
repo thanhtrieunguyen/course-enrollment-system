@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SinhVien;
 use App\Models\LopHoc;
 use App\Models\Khoa;
+use App\Models\HocKy;
 use App\Models\HocKy_SinhVien;
 
 class SinhVienController extends Controller
@@ -21,7 +22,8 @@ class SinhVienController extends Controller
     {
         $lops = LopHoc::all(); // Lấy danh sách các lớp học
         $khoas = Khoa::all();  // Lấy danh sách các khoa
-        return view('sinhvien.create', compact('lops', 'khoas'));
+        $hockys = HocKy::all(); // Lấy danh sách các học kỳ
+        return view('sinhvien.create', compact('lops', 'khoas', 'hockys'));
     }
 
     public function store(Request $request)
@@ -36,6 +38,7 @@ class SinhVienController extends Controller
             'malop' => 'required',
             'makhoa' => 'required',
             'quequan' => 'required',
+            'mahocky' => 'required',
         ]);
 
         // Tạo mới sinh viên
@@ -53,7 +56,7 @@ class SinhVienController extends Controller
 
         $hocky_sinhvien = new HocKy_SinhVien();
         $hocky_sinhvien->mssv = $request->mssv;
-        $hocky_sinhvien->mahocky = "HK1-2024";
+        $hocky_sinhvien->mahocky = $request->mahocky;
         $hocky_sinhvien->trangthai_hocky_sinhvien = 1; // 0: Đã hoàn thành, 1: Đang học, 2: Bảo lưu
 
         $hocky_sinhvien->save();

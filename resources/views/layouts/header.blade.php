@@ -1,10 +1,10 @@
 <div>
-    <nav class="py-2 border-b border-yellow-500 bg-white">
-        <div class="lg:h-20 px-0 lg:px-2 lg:block">
+    <nav class="py-1 border-b border-yellow-500 bg-white">
+        <div class="lg:h-16 px-0 lg:px-2 lg:block">
             <div class="py-0 grid grid-cols-1 md:grid-cols-2 md:gap-6 lg:gap-6">
                 <div class="flex justify-start px-3"><a class="flex items-center" href="/trangchu">
                         <div
-                            class="bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-3">
+                            class="bg-blue-900 text-white w-10 h-10 flex items-center justify-center font-bold text-xl mr-3 rounded-md">
                             {{ substr(config('app.name'), 0, 1) }}
                         </div>
                         <div class="py-2">
@@ -31,6 +31,9 @@
                         phần</a>
                     <a href="/ketqua-dangky" class="nav-link {{ Request::is('ketqua-dangky') ? 'active' : '' }}">Kết
                         quả đăng ký</a>
+                    @if (Auth::user()->role == 'admin')
+                        <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">Quản lý</a>
+                    @endif
                 </nav>
 
                 <div class="user-section">
@@ -80,7 +83,7 @@
             color: #e5e5e5;
             text-decoration: none;
             padding: 0.5rem 0;
-            transition: color 0.2s;
+
         }
 
         .nav-link.active {
@@ -122,7 +125,7 @@
             cursor: pointer;
             font-size: 1rem;
             padding: 0;
-            transition: color 0.2s;
+
         }
 
         .logout-btn:hover {

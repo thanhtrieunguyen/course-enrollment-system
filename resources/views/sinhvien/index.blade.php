@@ -3,22 +3,11 @@
 @section('title', 'Danh sách sinh viên')
 
 @section('content')
-    <!-- Success Notification -->
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Thành công!',
-                text: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
     <div class="container min-w-full mx-auto p-4">
 
         <!-- Header section with title and button -->
-        <div class="flex justify-between items-center  text-white p-4 rounded-md shadow-md" style="background-color: #002244">
+        <div class="flex justify-between items-center  text-white p-4 rounded-md shadow-md"
+            style="background-color: #002244">
             <h2 class="text-2xl font-semibold">Danh Sách Sinh Viên</h2>
             <a href="{{ route('sinhvien.create') }}"
                 class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md shadow-md">Thêm Sinh
@@ -50,11 +39,12 @@
                                 <td class="py-2 px-4 truncate">{{ $sinhvien->mssv }}</td>
                                 <td class="py-2 px-4 ">{{ $sinhvien->hoten }}</td>
                                 <td class="py-2 px-4 truncate text-center">{{ $sinhvien->gioitinh }}</td>
-                                <td class="py-2 px-4 truncate">{{ Carbon\Carbon::parse($sinhvien->ngaysinh)->format('d-m-Y') }}</td>
+                                <td class="py-2 px-4 truncate">{{ Carbon\Carbon::parse($sinhvien->ngaysinh)->format('d-m-Y') }}
+                                </td>
                                 <td class="py-2 px-4 truncate">{{ $sinhvien->lop->tenlop }}</td>
                                 <td class="py-2 px-4">{{ $sinhvien->lop->khoa->tenkhoa }}</td>
                                 <td class="py-2 px-4 truncate" title="{{ $sinhvien->quequan }}">{{ $sinhvien->quequan }}</td>
-    
+
                                 <td class="py-2 px-4 text-center">
                                     <a href="{{ route('sinhvien.edit', $sinhvien->mssv) }}"
                                         class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md">Sửa</a>
@@ -77,7 +67,7 @@
                     {{ $sinhviens->links() }}
                 </div>
             </div>
-            
+
         </div>
     </div>
 

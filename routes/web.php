@@ -94,4 +94,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('quanly-hocky/{mahocky}/edit', [HocKyController::class, 'edit'])->name('hocky.edit');
     Route::put('quanly-hocky/{mahocky}', [HocKyController::class, 'update'])->name('hocky.update');
     Route::delete('quanly-hocky/{mahocky}', [HocKyController::class, 'destroy'])->name('hocky.destroy');
+
+    Route::get('/getLops/{makhoa}', [LopController::class, 'getLops']);
+
 });
