@@ -3,6 +3,10 @@ set -eu
 
 export PORT="${PORT:-10000}"
 
+if [ -z "${APP_URL:-}" ] && [ -n "${RENDER_EXTERNAL_URL:-}" ]; then
+    export APP_URL="$RENDER_EXTERNAL_URL"
+fi
+
 if [ -z "${DB_URL:-}" ] && [ -n "${DATABASE_URL:-}" ]; then
     export DB_URL="$DATABASE_URL"
 fi
