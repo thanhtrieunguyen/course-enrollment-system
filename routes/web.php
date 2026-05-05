@@ -40,6 +40,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [HomeController::class, 'getAdminHome'])->name('admin.home');
+    Route::post('/admin/reset-demo-data', [HomeController::class, 'resetDemoData'])->name('admin.demo.reset');
 
     // Quản lý sinh vien
     Route::get('/quanly-sinhvien', [SinhVienController::class, 'index'])->name('sinhvien.index');

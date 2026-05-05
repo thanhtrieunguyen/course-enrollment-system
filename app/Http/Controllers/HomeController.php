@@ -9,6 +9,7 @@ use App\Models\Khoa;
 use App\Models\LopHoc;
 use App\Models\DSDangKy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 
@@ -40,5 +41,19 @@ class HomeController extends Controller
 
         return view('admin.home', compact('stats', 'registrations_by_khoa', 'hot_courses'));
     }
-}
 
+    public function resetDemoData()
+    {
+        try {
+            Artisan::call('demo:restore-database', [
+                '--force' => true,
+            ]);
+
+            return redirect()->route('admin.home')->with('success', 'Demo data has been reset.');
+        } catch (\Throwable $exception) {
+            report($exception);
+
+            return redirect()->route('admin.home')->with('error', 'Could not reset demo data. Please check logs.');
+        }
+    }
+}

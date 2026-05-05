@@ -30,6 +30,30 @@ class SinhvienSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        DB::table('sinhvien')->insert([
+            'mssv' => '0123456789',
+            'password' => Hash::make('123456'),
+            'role' => 'user',
+            'hoten' => 'Nguyễn Văn A',
+            'ngaysinh' => '2004-01-01',
+            'gioitinh' => 'Nam',
+            'malop' => 1,
+            'makhoa' => 'CNTT',
+            'quequan' => 'TP.HCM',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        foreach (['HK1-23', 'HK2-23', 'HK1'] as $hk) {
+            DB::table('hocky_sinhvien')->insert([
+                'mssv' => '0123456789',
+                'mahocky' => $hk,
+                'trangthai_hocky_sinhvien' => ($hk == 'HK1' ? '1' : '0'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
         $hos = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Hoàng', 'Huỳnh', 'Phan', 'Vũ', 'Võ', 'Đặng', 'Bùi', 'Đỗ', 'Hồ', 'Ngô', 'Dương', 'Lý'];
         $dems = ['Văn', 'Thị', 'Đình', 'Thanh', 'Minh', 'Hữu', 'Đức', 'Trọng', 'Kim', 'Anh', 'Ngọc', 'Quốc', 'Tú', 'Xuân', 'Hoàng'];
         $tens = ['An', 'Bình', 'Chi', 'Dũng', 'Em', 'Giang', 'Hương', 'Inh', 'Khánh', 'Linh', 'Minh', 'Nam', 'Oanh', 'Phúc', 'Quang', 'Sơn', 'Tuấn', 'Uyên', 'Vinh', 'Xuân', 'Yến', 'Trình', 'Toàn', 'Khôi', 'Khoa', 'Kiên', 'Hùng', 'Hào', 'Hải', 'Hậu'];

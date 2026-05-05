@@ -57,4 +57,8 @@ if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
     php artisan migrate --force
 fi
 
+if [ "${DEMO_RESET_ENABLED:-false}" = "true" ]; then
+    php artisan schedule:work &
+fi
+
 exec apache2-foreground

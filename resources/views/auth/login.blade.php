@@ -87,6 +87,24 @@
 
 
             </form>
+
+            <div class="mt-6 border-t border-gray-200 pt-5">
+                <p class="text-sm font-semibold text-gray-700 mb-3">Tài khoản demo</p>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <div class="rounded border border-blue-100 bg-blue-50 p-3">
+                        <p class="text-sm font-semibold text-blue-900">User</p>
+                        <p class="text-sm text-gray-700">MSSV: <strong>0123456789</strong></p>
+                        <p class="text-sm text-gray-700">Mật khẩu: <strong>123456</strong></p>
+                    </div>
+
+                    <div class="rounded border border-yellow-100 bg-yellow-50 p-3">
+                        <p class="text-sm font-semibold text-yellow-900">Admin</p>
+                        <p class="text-sm text-gray-700">MSSV: <strong>admin</strong></p>
+                        <p class="text-sm text-gray-700">Mật khẩu: <strong>admin</strong></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

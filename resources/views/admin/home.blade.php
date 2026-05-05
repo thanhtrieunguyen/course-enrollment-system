@@ -6,9 +6,19 @@
     <div class="container mx-auto px-6 py-8">
         <div class="flex items-center justify-between mb-8 border-b-2 border-gray-200 pb-4">
             <h3 class="text-2xl font-bold text-blue-900 uppercase">Hệ thống Dashboard</h3>
-            <span class="text-sm font-bold text-gray-600 bg-gray-100 px-3 py-1 border border-gray-300 rounded-md">
-                <i class="far fa-calendar-alt mr-1"></i> {{ now()->format('d/m/Y') }}
-            </span>
+            <div class="flex items-center gap-3">
+                <form action="{{ route('admin.demo.reset') }}" method="POST"
+                    onsubmit="return confirm('Reset toàn bộ demo data về trạng thái ban đầu?');">
+                    @csrf
+                    <button type="submit"
+                        class="bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-4 py-2 rounded-md uppercase">
+                        <i class="fas fa-rotate-left mr-1"></i> Reset demo data
+                    </button>
+                </form>
+                <span class="text-sm font-bold text-gray-600 bg-gray-100 px-3 py-1 border border-gray-300 rounded-md">
+                    <i class="far fa-calendar-alt mr-1"></i> {{ now()->format('d/m/Y') }}
+                </span>
+            </div>
         </div>
 
         <!-- Stats Cards -->
