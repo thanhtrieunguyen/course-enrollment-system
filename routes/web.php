@@ -33,6 +33,10 @@ Route::middleware([\App\Http\Middleware\CheckLoginCookie::class])->group(functio
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+})->name('health');
+
 
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
