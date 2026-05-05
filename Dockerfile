@@ -11,9 +11,25 @@ COPY public ./public
 RUN npm install && npm run build
 
 
-FROM composer:2 AS vendor
+FROM php:8.3-cli-bookworm AS vendor
 
 WORKDIR /app
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+        libonig-dev \
+        libpq-dev \
+        libzip-dev \
+        unzip \
+    && docker-php-ext-install \
+        mbstring \
+        pdo_mysql \
+        pdo_pgsql \
+        zip \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY composer.json composer.lock ./
 RUN composer install \
